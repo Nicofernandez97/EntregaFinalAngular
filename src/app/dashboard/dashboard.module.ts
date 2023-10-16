@@ -2,6 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import { FormsModule } from './modules/forms/forms.module';
+import { UsersModule } from './modules/users/users.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -11,7 +17,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   ],
   imports: [
     CommonModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    FormsModule,
+    UsersModule,
+    SharedModule
   ],
   exports:[DashboardComponent]
 })

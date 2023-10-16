@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>Creación de usuarios </h1>
+<div mat-dialog-content>
+    <form [formGroup]="userForm">
+        <div class="row">
+            <div class="col-6">
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Ingrese el nombre</mat-label>
+                    <input formControlName="name" matInput>
+                    <mat-hint>
+                        Ingresar el nombre del alumno,que tenga como minimo 3 letras.
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Ingrese el apellido</mat-label>
+                    <input formControlName="lastName" matInput>
+                    <mat-hint>
+                        Ingresar el apellido del alumno.
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Ingrese el Email</mat-label>
+                    <input formControlName="email" matInput>
+                    <mat-hint>
+                        Ingresar el email del alumno. Este debe incluír un @.
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field style="width: 100%;">
+                    <mat-label class="w-100">Ingrese la nota del 1er Parcial</mat-label>
+                    <input type="number" formControlName="grade" matInput>
+                    <mat-hint>
+                        Ingresar la nota del primer parcial del alumno. Esta debe ser un numero.
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Borrar</button>
+    <button (click)="onSubmit()" mat-button>Guardar </button>
+    <!--Aquí se envían los valores que quiero recibir del form-->
+</div>
