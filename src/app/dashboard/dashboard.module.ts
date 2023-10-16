@@ -8,7 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from './modules/forms/forms.module';
 import { UsersModule } from './modules/users/users.module';
 import { SharedModule } from '../shared/shared.module';
-
+import {MatList, MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -23,7 +23,8 @@ import { SharedModule } from '../shared/shared.module';
     MatButtonModule,
     FormsModule,
     UsersModule,
-    SharedModule
+    SharedModule,
+    MatListModule,
   ],
   exports:[DashboardComponent]
 })

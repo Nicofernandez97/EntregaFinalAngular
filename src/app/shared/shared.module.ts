@@ -10,10 +10,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { PiperequeridoPipe } from './pipes/piperequerido.pipe';
-
+import { FontsizeDirective } from './directives/fontsize.directive';
 @NgModule({
   declarations: [
     PiperequeridoPipe,
+    FontsizeDirective,
   ],
   imports: [CommonModule],
   exports: [
@@ -27,7 +28,7 @@ import { PiperequeridoPipe } from './pipes/piperequerido.pipe';
     MatSelectModule,
     MatTableModule,
     PiperequeridoPipe,
-    
+    FontsizeDirective
   ],
 })
 export class SharedModule {}

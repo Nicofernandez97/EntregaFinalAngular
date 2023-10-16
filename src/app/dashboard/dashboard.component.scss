@@ -17,3 +17,17 @@
     padding: 5px;
     margin-top: 30px;
 }
+
+.container>.row {
+    border: 1px solid red;
+    min-height: 30%;
+}
+
+.container>.row>.col-md-6>.row {
+    border: 1px solid red;
+    min-height: 50%;
+}
+
+a {
+    text-decoration: none;
+}

@@ -63,7 +63,19 @@ export class UsersComponent {
   }
   onDelete(userMail: string):void {
    this.users = this.users.filter((data) => data.email !== userMail)
-    
-   
+  }
+  onEdit(user: User):void {
+    this.matDialog.open(UserDialogComponent,{
+      data:user
+    }).afterClosed().subscribe({
+      next: (v) => {
+        if(!!v){
+          const editedArray = [...this.users]
+         const indexObjetToEdit = editedArray.findIndex((u) => u.email === user.email)
+         editedArray[indexObjetToEdit]= {...editedArray[indexObjetToEdit], ...v}
+         this.users = [...editedArray]
+        }
+      }
+    })
   }
 }
