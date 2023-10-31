@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { CoreModule } from './core/core.module';
 
 
 
@@ -16,6 +17,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     DashboardModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

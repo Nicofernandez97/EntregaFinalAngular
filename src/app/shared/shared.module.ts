@@ -11,6 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { PiperequeridoPipe } from './pipes/piperequerido.pipe';
 import { FontsizeDirective } from './directives/fontsize.directive';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 @NgModule({
   declarations: [
     PiperequeridoPipe,
@@ -28,7 +30,8 @@ import { FontsizeDirective } from './directives/fontsize.directive';
     MatSelectModule,
     MatTableModule,
     PiperequeridoPipe,
-    FontsizeDirective
+    FontsizeDirective,
+    MatDatepickerModule
   ],
 })
 export class SharedModule {}

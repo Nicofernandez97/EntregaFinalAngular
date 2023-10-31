@@ -1,0 +1,33 @@
+.example-container {
+
+    height: 100vh;
+}
+
+
+
+.example-sidenav {
+    padding: 3px;
+}
+
+.dashboard-content {
+    padding: 5px;
+}
+
+.sidebar-format {
+    padding: 5px;
+    margin-top: 30px;
+}
+
+.container>.row {
+    border: 1px solid red;
+    min-height: 30%;
+}
+
+.container>.row>.col-md-6>.row {
+    border: 1px solid red;
+    min-height: 50%;
+}
+
+a {
+    text-decoration: none;
+}

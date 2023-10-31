@@ -1,28 +1,13 @@
 <mat-drawer-container class="example-container" autosize>
-
-
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-        <div class="sidebar-format">
-            <mat-list role="list">
-                <mat-list-item role="listitem" style="height: 20vh;"><a href="/">Sección Alumnos</a></mat-list-item>
-                <mat-list-item role="listitem" style="height: 20vh;"><a href="/">Sección Cursos</a></mat-list-item>
-            </mat-list>
-        </div>
-
+    <mat-drawer style="width: 200px" [opened]="showSidebar" #drawer class="example-sidenav" mode="side"
+        position="start">
+        <app-sidebar></app-sidebar>
     </mat-drawer>
-
     <div class="example-sidenav-content">
-        <mat-toolbar color="accent">
-            <button (click)="drawer.toggle()" mat-icon-button class="example-icon"
-                aria-label="Example icon-button with menu icon">
-                <mat-icon>menu</mat-icon>
-            </button>
-            <span appFontsize>Listado de alumnos</span>
-            <span class="example-spacer"></span>
-        </mat-toolbar>
-        <div class="dashboard-content">
-            <!-- <app-forms></app-forms> -->
-            <app-users></app-users>
-        </div>
+        <app-header (drawer)="showSidebar = !showSidebar"></app-header>
+        <!-- Muestra pantalla según Routing (Direcciones en app-routing.module) -->
+        <main>
+            <router-outlet></router-outlet>
+        </main>
     </div>
 </mat-drawer-container>

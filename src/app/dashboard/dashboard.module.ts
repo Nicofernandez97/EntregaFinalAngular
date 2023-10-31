@@ -9,11 +9,19 @@ import { FormsModule } from './modules/forms/forms.module';
 import { UsersModule } from './modules/users/users.module';
 import { SharedModule } from '../shared/shared.module';
 import {MatList, MatListModule} from '@angular/material/list';
-
+import { RouterModule } from '@angular/router';
+import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { CoursesModule } from './modules/courses/courses.module';
+import { MatNativeDateModule } from '@angular/material/core';
+ 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent,
+    SidebarComponent,
+
   ],
   imports: [
     CommonModule,
@@ -25,6 +33,9 @@ import {MatList, MatListModule} from '@angular/material/list';
     UsersModule,
     SharedModule,
     MatListModule,
+    RouterModule,
+    CoursesModule,
+    MatNativeDateModule
   ],
   exports:[DashboardComponent]
 })

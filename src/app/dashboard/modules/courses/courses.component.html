@@ -1,0 +1,8 @@
+<h2>Cursos:</h2>
+<button (click)="openCourseDialog()" mat-flat-button color="primary">
+    <mat-icon>
+        add
+    </mat-icon>
+    Crear Curso
+</button>
+<app-coursestable [dataSource]="(courses$ | async) || []"></app-coursestable>

@@ -1,0 +1,30 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell appFontsize *matHeaderCellDef> Nombre Curso </th>
+        <td mat-cell *matCellDef="let course"> {{course.name}} </td>
+    </ng-container>
+
+    <!-- startDate Column -->
+    <ng-container matColumnDef="startDate">
+        <th mat-header-cell appFontsize *matHeaderCellDef> Fecha de inicio </th>
+        <td mat-cell *matCellDef="let course"> {{course.startDate | date}} </td>
+    </ng-container>
+
+    <!-- endDate Column -->
+    <ng-container matColumnDef="endDate">
+        <th mat-header-cell appFontsize *matHeaderCellDef> Fecha de finalización </th>
+        <td mat-cell *matCellDef="let course"> {{course.endDate | date}} </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell appFontsize *matHeaderCellDef> Modificaciones </th>
+        <td mat-cell *matCellDef="let course"> <button mat-flat-button color="warn"><mat-icon>delete</mat-icon></button>
+            <button mat-icon-button color="primary"><mat-icon>edit</mat-icon></button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef=" displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

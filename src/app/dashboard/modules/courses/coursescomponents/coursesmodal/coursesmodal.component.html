@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>Curso </h1>
+<div mat-dialog-content>
+    <form>
+        <div class="row">
+            <div class="col-12">
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Ingrese el nombre del curso</mat-label>
+                    <input [formControl]="nameCourse" matInput>
+                    <mat-hint>
+                        Ingresar el nombre del curso,que tenga como minimo 4 letras.
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field style="width: 100%;">
+
+                    <mat-label>Fecha de inicio de curso</mat-label>
+                    <input [formControl]="startCourse" matInput [matDatepicker]="pickerStart">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerStart></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+            <div class="col-6">
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Fecha de fin de curso</mat-label>
+                    <input matInput [formControl]="endCourse" [matDatepicker]="pickerEnd">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerEnd></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button (click)="onSubmit()"> Guardar</button>
+    <!--Aquí se envían los valores que quiero recibir del form-->
+</div>
