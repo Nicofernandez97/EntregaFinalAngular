@@ -14,7 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CoursesModule } from './modules/courses/courses.module';
 import { MatNativeDateModule } from '@angular/material/core';
- 
+import { EmployeesModule } from './modules/employees/employees.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatListModule,
     RouterModule,
     CoursesModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    EmployeesModule
   ],
   exports:[DashboardComponent]
 })

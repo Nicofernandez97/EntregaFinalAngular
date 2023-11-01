@@ -5,4 +5,5 @@
     </mat-icon>
     Crear Curso
 </button>
-<app-coursestable [dataSource]="(courses$ | async) || []"></app-coursestable>
+<app-coursestable [dataSource]="(courses$ | async) || []" (deleteCourse)="OnDeleteCourse($event)"
+    (changeCourse)="onChangeCourse($event)"></app-coursestable>

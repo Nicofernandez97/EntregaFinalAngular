@@ -29,4 +29,21 @@ export class CoursesComponent {
       }
     })
   }
+
+  onChangeCourse(courseName: string): void{
+    this.matDialog.open(CoursesmodalComponent,{
+      data: courseName,
+    }).afterClosed().subscribe({
+      next: (formValue) => {
+        if(formValue !== undefined){
+         this.courses$ = this.coursesService.changeCourse$(courseName, formValue)
+        }
+      }
+    })
+  }
+
+  OnDeleteCourse(courseName: string): void{
+    this.courses$= this.coursesService.deleteCourse$(courseName) 
+  }
+  
 }

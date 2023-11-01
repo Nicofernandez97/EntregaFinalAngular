@@ -16,7 +16,7 @@
 
                     <mat-label>Fecha de inicio de curso</mat-label>
                     <input [formControl]="startCourse" matInput [matDatepicker]="pickerStart">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-hint>Mes/Dia/Año</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="pickerStart"></mat-datepicker-toggle>
                     <mat-datepicker #pickerStart></mat-datepicker>
                 </mat-form-field>
@@ -26,7 +26,7 @@
                 <mat-form-field style="width: 100%;">
                     <mat-label>Fecha de fin de curso</mat-label>
                     <input matInput [formControl]="endCourse" [matDatepicker]="pickerEnd">
-                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-hint>Mes/Dia/Año</mat-hint>
                     <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
                     <mat-datepicker #pickerEnd></mat-datepicker>
                 </mat-form-field>

@@ -12,6 +12,10 @@ export class CoursestableComponent {
   dataSource: Course[] = [];
 
   @Output()
-  editCourse = new EventEmitter()
+  changeCourse = new EventEmitter()
+
+  @Output()
+  deleteCourse = new EventEmitter();
+  
   displayedColumns = ["name", "startDate", "endDate", "actions"]
 }

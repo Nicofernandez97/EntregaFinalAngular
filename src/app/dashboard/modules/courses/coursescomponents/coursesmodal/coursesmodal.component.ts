@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Course } from '../../models';
+import { CoursesService } from '../../courses.service';
 
 @Component({
   selector: 'app-coursesmodal',
@@ -9,17 +10,28 @@ import { Course } from '../../models';
   styleUrls: ['./coursesmodal.component.scss']
 })
 export class CoursesmodalComponent {
-  nameCourse= new FormControl()
+  nameCourse= new FormControl("",[Validators.required,Validators.minLength(4)])
   startCourse= new FormControl()
   endCourse= new FormControl()
 
   courseForm = new FormGroup({
-    name: this.nameCourse,
+    name: this.nameCourse, 
     startDate: this.startCourse,
     endDate: this.endCourse
   });
 
-    constructor(private matDialogRef: MatDialogRef<CoursesmodalComponent>){}
+    constructor(private matDialogRef: MatDialogRef<CoursesmodalComponent>, private coursesService: CoursesService,  @Inject(MAT_DIALOG_DATA) private courseName?: string ){
+
+      if(courseName){
+        this.coursesService.findCourseByName$(courseName).subscribe({
+          next:(course) =>{
+            if (course){
+              this.courseForm.patchValue(course)
+            }
+          }
+        })
+      }
+    }
 
   onSubmit(): void {
     if (this.courseForm.invalid) {
@@ -29,8 +41,5 @@ export class CoursesmodalComponent {
       this.matDialogRef.close(this.courseForm.value)
     }
   }
-
-
-
 }
 

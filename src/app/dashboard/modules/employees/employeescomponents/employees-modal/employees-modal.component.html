@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Empleado </h1>
+<div mat-dialog-content>
+    <form>
+        <div class="row">
+            <div class="col-12">
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Ingrese el nombre del empleado</mat-label>
+                    <input [formControl]="employeeName" matInput>
+                    <mat-hint>
+                        Ingresar el nombre del empleado,que tenga como minimo 4 letras.
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Ingrese el Email del empleado</mat-label>
+                    <input [formControl]="employeeEmail" matInput>
+                    <mat-hint>
+                        Ingresar el email del empleado. Este debe incluír un @.
+                    </mat-hint>
+                </mat-form-field>
+
+            </div>
+            <div class="col-6">
+                <mat-form-field>
+                    <mat-label>Permiso a otorgar</mat-label>
+                    <mat-select [formControl]="employeePrivileges">
+                        <mat-option *ngFor="let permit of permisos" [value]="permit.value">
+                            {{permit.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button (click)="onSubmit()"> Guardar</button>
+    <!--Aquí se envían los valores que quiero recibir del form-->
+</div>

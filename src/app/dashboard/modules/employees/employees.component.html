@@ -1,1 +1,9 @@
-<p>employees works!</p>
+<h2>Empleados:</h2>
+<button (click)="openEmployeeDialog()" mat-flat-button color="primary">
+    <mat-icon>
+        add
+    </mat-icon>
+    Agregar Empleado
+</button>
+<app-employees-table [dataSource]="(employees$ | async) || []" (deleteEmployee)="OnDeleteEmployee($event)"
+    (changeEmployee)="onChangeEmployee($event)"></app-employees-table>
