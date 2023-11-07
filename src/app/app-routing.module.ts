@@ -2,35 +2,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthComponent } from './auth/auth.component';
-import { UsersComponent } from './dashboard/modules/users/users.component';
-import { CoursesComponent } from './dashboard/modules/courses/courses.component';
-import { EmployeesComponent } from './dashboard/modules/employees/employees.component';
+import { dashboardGuard } from './core/guards/dashboard.guard';
 
 const routes: Routes = [
-  {path: "dashboard",
-     component: DashboardComponent,
-     children:[
-      {
-          path:"users",
-          component: UsersComponent
-      },
-      {
-        path:"courses",
-        component: CoursesComponent
-      },
-      {
-        path:"employees",
-        component:EmployeesComponent
-      }
-     
-      
-   ],
+  {
+    path: 'dashboard',
+    canActivate: [dashboardGuard],
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((arch) => arch.DashboardModule),
   },
-    {
-     path: "login",
-     component: AuthComponent // No utilizado
-    }
-    ,
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./auth/auth.module').then((arch) => arch.AuthModule),
+  },
     {
       path: "**",
       component: DashboardComponent

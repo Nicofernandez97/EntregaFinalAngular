@@ -1,0 +1,14 @@
+{
+    "users": [
+        {
+            "name": "Nicolas",
+            "lastName": "Fernandez",
+            "email": "nicoemail@hotmail.com",
+            "password": "1234",
+            "token": "token1",
+            "id": 1
+        }
+    ],
+    "courses": [],
+    "employees": []
+}

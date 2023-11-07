@@ -4,6 +4,7 @@ import { CoursesComponent } from './courses.component';
 import { CoursestableComponent } from './coursescomponents/coursestable/coursestable.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CoursesmodalComponent } from './coursescomponents/coursesmodal/coursesmodal.component';
+import { CoursesRoutingModule } from './courses-routing.module';
 
 
 @NgModule({
@@ -13,7 +14,7 @@ import { CoursesmodalComponent } from './coursescomponents/coursesmodal/coursesm
     CoursesmodalComponent
   ],
   imports: [
-    CommonModule, SharedModule,
+    CommonModule, SharedModule, CoursesRoutingModule
   ]
 })
 export class CoursesModule { }
