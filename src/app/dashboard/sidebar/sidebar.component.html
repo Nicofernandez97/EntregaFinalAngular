@@ -1,13 +1,11 @@
 <mat-nav-list>
-    <mat-list-item style="height: 20vh;" routerLink="users">
+    <mat-list-item style="height: 20vh;" [routerLink]="['/dashboard/users']" routerLinkActive="router-link-active">
         <a>Sección Alumnos</a>
     </mat-list-item>
-
-    <mat-list-item style="height: 20vh;" routerLink="courses">
+    <mat-list-item style="height: 20vh;" [routerLink]="['/dashboard/courses']" routerLinkActive="router-link-active">
         <a>Sección Cursos</a>
     </mat-list-item>
-
-    <mat-list-item style="height: 20vh;" routerLink="employees">
+    <mat-list-item style="height: 20vh;" [routerLink]="['/dashboard/employees']" routerLinkActive="router-link-active">
         <a>Sección Empleados</a>
     </mat-list-item>
 </mat-nav-list>

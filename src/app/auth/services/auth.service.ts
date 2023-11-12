@@ -27,7 +27,7 @@ export class AuthService {
         }
         else {
          const userChecked = resp[0]
-         console.log("ok")
+         console.log("Logueado correctamente")
          this.authUserSubject$.next(userChecked)
          this.router.navigate(['/dashboard/users']);
         }

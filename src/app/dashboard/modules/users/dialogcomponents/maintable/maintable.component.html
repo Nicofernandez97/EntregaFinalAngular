@@ -23,7 +23,8 @@
         <th mat-header-cell appFontsize *matHeaderCellDef> Modificaciones </th>
         <td mat-cell *matCellDef="let user"> <button mat-flat-button color="warn"
                 (click)="deleteUser.emit(user.email)"><mat-icon>delete</mat-icon></button>
-            <button mat-icon-button color="primary" (click)="editUser.emit(user) "><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="primary"
+                (click)="changeUser.emit(user.email) "><mat-icon>edit</mat-icon></button>
         </td>
     </ng-container>
 

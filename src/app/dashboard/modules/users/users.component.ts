@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog} from '@angular/material/dialog'
 import { UserDialogComponent } from './dialogcomponents/user-dialog/user-dialog.component';
 import { User } from './models';
+import { UsersService } from './users.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -10,70 +12,43 @@ import { User } from './models';
 export class UsersComponent {
   userName=""
 
-  users: User[] = [
-    {
-      name:"jose",
-      lastName: "perez",
-      email: "joselu@hotmail.com",
-      grade: 7,
-    },
-    {
-      name:"martina",
-      lastName: "lopez",
-      email: "martu23@hotmail.com",
-      grade: 2,
-    },
-    {
-      name:"alvaro",
-      lastName: "fernandez",
-      email: "alvaro@gmail.com",
-      grade: 9,
-    },
-    {
-      name:"julian",
-      lastName: "diaz",
-      email: "elJulchu@hotmail.com",
-      grade: 3,
-    },
-    {
-      name:"damian",
-      lastName: "estrada",
-      email: "damidami@gmail.com",
-      grade: 8,
-    },
-  ]
+  users$: Observable<User[]>
+
   constructor(
-    
+    private usersService: UsersService,
     private matDialog: MatDialog
-  ){}
+  ){
+    this.users$ = this.usersService.getUsers$()
+  }
   openDialog(): void {
     this.matDialog.open(UserDialogComponent).afterClosed().subscribe({ 
-      next: (va) =>{
-        console.log("valor:", va )
-        if(!!va){
-          this.users=[
-            ...this.users,
-            {            
-                ...va           //No se puede hacer un push directo, solamente agregar al array de users vía el spread operator.
-            }
-          ]
+      next: (notCancelled) => {
+        if(notCancelled){
+         this.users$ = this.usersService.addUser$({
+            name: notCancelled.name,
+            lastName: notCancelled.lastName,
+            email: notCancelled.email,
+            grade: notCancelled.grade
+          })
         }
-      },
+      }
     })
   }
-  onDelete(userMail: string):void {
-   this.users = this.users.filter((data) => data.email !== userMail)
+  
+  
+  onDeleteUser(userEmail: string):void {
+   this.users$ = this.usersService.deleteUser$(userEmail)
   }
-  onEdit(user: User):void {
+
+
+
+  onChangeUser(userEmail: string):void {
     this.matDialog.open(UserDialogComponent,{
-      data:user
+      data:userEmail,
     }).afterClosed().subscribe({
-      next: (v) => {
-        if(!!v){
-          const editedArray = [...this.users]
-         const indexObjetToEdit = editedArray.findIndex((u) => u.email === user.email)
-         editedArray[indexObjetToEdit]= {...editedArray[indexObjetToEdit], ...v}
-         this.users = [...editedArray]
+      next: (formValue) => {
+        if(formValue !== undefined){
+          this.users$ = this.usersService.changeUser$(userEmail, formValue)
         }
       }
     })

@@ -7,7 +7,7 @@ const routes: Routes = [
     {
         path:"",
         component: AuthComponent,
-        children: [ {
+        children: [{
             path: "login",
             loadChildren : () => import("./modules/login/login.module").then( (arch) => arch.LoginModule)
         },

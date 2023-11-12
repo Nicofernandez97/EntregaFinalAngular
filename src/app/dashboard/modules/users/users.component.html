@@ -5,5 +5,7 @@
     </mat-icon>
     Crear Alumno
 </button>
-{{ userName }}
-<app-maintable [dataSource]="users" (deleteUser)="onDelete($event)" (editUser)="onEdit($event)"></app-maintable>
+<app-maintable [dataSource]="(users$ | async) || []"
+ (deleteUser)="onDeleteUser($event)" 
+ (changeUser)="onChangeUser($event)">
+</app-maintable>
