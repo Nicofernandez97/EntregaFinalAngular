@@ -8,17 +8,6 @@ export class EmployeesService {
 
 
   employees: Employee[] = [
-  
-  {
-    name: "Javier Nicolás Fernandez",
-    email: "nicoEmail@hotmail.com",
-    privileges:"admin"
-  },
-  {  
-     name: "Jose Vargas",
-     email: "joselu@hotmail.com",
-     privileges:"empleado"
-  }
   ]
 
 

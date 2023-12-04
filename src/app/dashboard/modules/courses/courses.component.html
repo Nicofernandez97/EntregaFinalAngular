@@ -1,5 +1,5 @@
-<h2>Cursos:</h2>
-<button (click)="openCourseDialog()" mat-flat-button color="primary">
+<h2 style="display: flex; justify-content: center;">Cursos:</h2>
+<button [disabled]="(userPermits$|async) !== 'admin' " (click)="openCourseDialog()" mat-flat-button color="primary">
     <mat-icon>
         add
     </mat-icon>

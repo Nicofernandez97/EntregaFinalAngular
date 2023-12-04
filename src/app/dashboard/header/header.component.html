@@ -1,9 +1,19 @@
-<mat-toolbar class="flex justify-content-between" color="accent">
+<mat-toolbar class="flex justify-content-between" display color="accent">
+
     <div>
         <button (click)="drawer.emit()" mat-icon-button class="example-icon"
             aria-label="Example icon-button with menu icon">
             <mat-icon>menu</mat-icon>
         </button>
-        <span> Administración de alumnos </span>
+        <span> Administración de integrantes de cursos. </span>
+        <span class="example-spacer"></span>
+        <span>
+            Bienvenido {{ (authUser$ | async)?.name}} {{(authUser$|async)?.lastName}}
+        </span>
+        <span>
+            <button mat-button style="margin-left: 15px;" (click)="logOut()">Cerrar Sesión</button>
+        </span>
     </div>
+
+
 </mat-toolbar>

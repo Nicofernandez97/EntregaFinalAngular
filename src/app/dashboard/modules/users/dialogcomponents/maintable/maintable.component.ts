@@ -1,5 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from '../../models';
+import { Store } from '@ngrx/store';
+import { Observable, map } from 'rxjs';
+import { selectAuthUser } from 'src/app/store/auth/auth.selectors';
+
+
 
 @Component({
   selector: 'app-maintable',
@@ -14,8 +19,12 @@ export class MaintableComponent {
   deleteUser = new EventEmitter()
 
   @Output()
-  changeUser = new EventEmitter()
+  changeUser = new EventEmitter<User>()
 
-  displayedColumns = ["name","email","grade","actions"] //Array de strings en el que pondremos nombres a cada columna.
+  displayedColumns = ["name","email","grade","actions"] 
 
+  userPermits$: Observable<"admin"|"estudiante"|"profesor"| undefined>
+  constructor(private store: Store){
+   this.userPermits$ = this.store.select(selectAuthUser).pipe(map((user) => user?.role))
+  }
 }

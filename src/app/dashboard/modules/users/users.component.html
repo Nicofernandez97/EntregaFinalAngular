@@ -1,11 +1,10 @@
-<h2>Alumnos</h2>
-<button (click)="openDialog()" mat-flat-button color="primary">
+<h2 style="display: flex; justify-content: center;">Integrantes de la institución</h2>
+<button [disabled]="(userPermits$|async) !== 'admin' " (click)="openDialog()" mat-flat-button color="primary">
     <mat-icon>
         add
     </mat-icon>
-    Crear Alumno
+    Crear Integrante
 </button>
-<app-maintable [dataSource]="(users$ | async) || []"
- (deleteUser)="onDeleteUser($event)" 
- (changeUser)="onChangeUser($event)">
+<app-maintable [dataSource]="(users$ | async) || []" (deleteUser)="onDeleteUser($event)"
+    (changeUser)="onChangeUser($event)">
 </app-maintable>

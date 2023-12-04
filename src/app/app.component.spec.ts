@@ -12,10 +12,10 @@ describe(`AppComponent`, () => {
         })
     })
 
-    it(`Debería levantar la app, y el titulo debería ser igual a "PF3FernandezJavier"`, () => {
+    it(`Debería levantar la app, y el titulo debería ser igual a "EntregaFinalFernandezJavier"`, () => {
         const fixture = TestBed.createComponent(AppComponent)
         const app = fixture.componentInstance
         expect(app).toBeTruthy()
-        expect(app.title).toEqual("PF3FernandezJavier")
+        expect(app.title).toEqual("EntregaFinalFernandezJavier")
     })
 })

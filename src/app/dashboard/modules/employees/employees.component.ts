@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { EmployeesService } from './employees.service';
 import { Observable } from 'rxjs';
-import { Employee } from './models';
+import { Employee, Inscripcion } from './models';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeesModalComponent } from './employeescomponents/employees-modal/employees-modal.component';
+import { Store } from '@ngrx/store';
+import { InscripcionesActions } from './store/inscripciones.actions';
 
 @Component({
   selector: 'app-employees',
@@ -14,8 +16,9 @@ export class EmployeesComponent {
 
   employees$: Observable<Employee[]>
 
-  constructor(private employeesService: EmployeesService, private matDialog: MatDialog ){
+  constructor(private employeesService: EmployeesService, private matDialog: MatDialog, private store: Store){
   this.employees$ = this.employeesService.getEmployees$();
+  this.store.dispatch(InscripcionesActions.loadInscripciones())
   }
   openEmployeeDialog():void {
     this.matDialog.open(EmployeesModalComponent).afterClosed().subscribe({
@@ -31,23 +34,26 @@ export class EmployeesComponent {
     })
   }
 
-  onChangeEmployee(employeesName: string): void{
-    this.matDialog.open(EmployeesModalComponent,{
-      data: employeesName,
-    }).afterClosed().subscribe({
+  OnDeleteInscription(id: number): void{
+    this.store.dispatch(InscripcionesActions.deleteInscripciones({id}))
+    this.store.dispatch(InscripcionesActions.loadInscripciones())
+  }
+
+  OnChangeInscription(payload: Inscripcion): void{
+    this.matDialog.open(EmployeesModalComponent,
+      {
+      data: payload,
+      }).afterClosed().subscribe({
       next: (formValue) => {
         if(formValue !== undefined){
-         this.employees$ = this.employeesService.changeEmployee$(employeesName, formValue)
+          
         }
       }
     })
   }
-
-  OnDeleteEmployee(employeesName: string): void{
-    this.employees$= this.employeesService.deleteEmployee$(employeesName) 
   }
   
-}
+
 
 
 

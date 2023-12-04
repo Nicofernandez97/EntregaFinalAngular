@@ -4,6 +4,9 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { User } from 'src/app/dashboard/modules/users/models';
 import { LoginData } from '../models';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { authActions } from 'src/app/store/auth/auth.actions';
+import { selectAuthUser } from 'src/app/store/auth/auth.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +15,11 @@ import { Router } from '@angular/router';
 
 export class AuthService {
   
-  private authUserSubject$ = new BehaviorSubject <User | null>(null);
-  public authUser$ = this.authUserSubject$.asObservable();
+  
+  public authUser$ = this.store.select(selectAuthUser);
 
 
-  constructor(private httpClient: HttpClient, private router: Router) {}
+  constructor(private httpClient: HttpClient, private router: Router, private store: Store) {}
 
 
   login(data: LoginData): void {
@@ -27,8 +30,8 @@ export class AuthService {
         }
         else {
          const userChecked = resp[0]
-         console.log("Logueado correctamente")
-         this.authUserSubject$.next(userChecked)
+         this.store.dispatch(authActions.setAsAuthUser( { data:userChecked}))
+         //this.authUserSubject$.next(userChecked)
          this.router.navigate(['/dashboard/users']);
         }
       },
@@ -36,4 +39,9 @@ export class AuthService {
     
   }
 
+
+    logOut(): void {
+      this.store.dispatch(authActions.deleteAuthUser())
+      this.router.navigate([`/auth/login`])
+    }
 }

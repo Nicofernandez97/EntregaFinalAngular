@@ -21,9 +21,10 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell appFontsize *matHeaderCellDef> Modificaciones </th>
         <td mat-cell *matCellDef="let course"> <button mat-flat-button color="warn"
-                (click)="deleteCourse.emit(course.name)"><mat-icon>delete</mat-icon></button>
-            <button mat-icon-button color="primary"
-                (click)="changeCourse.emit(course.name)"><mat-icon>edit</mat-icon></button>
+                [disabled]="(userPermits$|async) !== 'admin' "
+                (click)="deleteCourse.emit(course.id)"><mat-icon>delete</mat-icon></button>
+            <button mat-icon-button color="primary" [disabled]="(userPermits$|async) !== 'admin' "
+                (click)="changeCourse.emit(course)"><mat-icon>edit</mat-icon></button>
         </td>
     </ng-container>
 

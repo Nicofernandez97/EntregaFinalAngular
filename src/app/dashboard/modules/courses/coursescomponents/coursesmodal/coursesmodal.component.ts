@@ -20,16 +20,10 @@ export class CoursesmodalComponent {
     endDate: this.endCourse
   });
 
-    constructor(private matDialogRef: MatDialogRef<CoursesmodalComponent>, private coursesService: CoursesService,  @Inject(MAT_DIALOG_DATA) private courseName?: string ){
+    constructor(private matDialogRef: MatDialogRef<CoursesmodalComponent>, private coursesService: CoursesService,  @Inject(MAT_DIALOG_DATA) private course?: Course ){
 
-      if(courseName){
-        this.coursesService.findCourseByName$(courseName).subscribe({
-          next:(course) =>{
-            if (course){
-              this.courseForm.patchValue(course)
-            }
-          }
-        })
+      if (this.course) {
+        this.courseForm.patchValue(this.course);
       }
     }
 

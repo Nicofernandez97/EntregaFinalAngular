@@ -3,7 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
-export const dashboardGuard: CanActivateFn = (route, state) => { //CanActivateFn: Funcion que retorna urlTree, boolean, u observable<boolean>
+export const dashboardGuard: CanActivateFn = (route, state) => { //CanActivateFn: Debe retornar retorna urlTree, boolean, u observable<boolean>
   
   const router = inject(Router)
   const authService = inject(AuthService)

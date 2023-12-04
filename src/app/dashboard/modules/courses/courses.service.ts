@@ -1,46 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Course } from './models';
-import { Observable, of } from 'rxjs';
+import { Observable, of, concatMap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
 
-  courses: Course[] = [
-    {
-      name:"Angular",
-      startDate: new Date(),
-      endDate: new Date()
-    },
-    {
-      name:"React",
-      startDate: new Date(),
-      endDate: new Date()
-    },
-    {
-      name:"NextJS",
-      startDate: new Date(),
-      endDate: new Date()
-    }
-  ];
-
+  constructor(private httpClient: HttpClient){}
 
   getCourses$(): Observable<Course[]> {
-      return of (this.courses)
+    return this.httpClient.get<Course[]>("http://localhost:3000/courses");
   }
   addCourse$(payload: Course): Observable<Course[]>{
-    this.courses.push(payload)
-    return of([...this.courses]) //Se precisa volver a referenciar a la variable para que se detecte el cambio.
+    return this.httpClient.post<Course>("http://localhost:3000/courses", payload).pipe(concatMap(() => this.getCourses$()));
   }
-  deleteCourse$(courseName: string): Observable<Course[]>{
-    this.courses= this.courses.filter((course) => course.name !== courseName)
-    return of (this.courses)
+  deleteCourse$(id: number): Observable<Course[]> {return this.httpClient.delete<Object>(`http://localhost:3000/courses/${id}`)
+  .pipe(concatMap(() => this.getCourses$())
+);
   }
-  findCourseByName$(courseName: string) : Observable< Course | undefined> {
-    return of(this.courses.find( (course) => course.name === courseName))
-  }
-  changeCourse$(courseName: string, payload: Course): Observable<Course[]>{
-    return of (this.courses.map( (course) => course.name === courseName ? { ...course, ...payload} : course)) //Al devolver un array no habrá necesidad de referenciarlo otra vez.
+  changeCourse$(courseId: number, payload: Course): Observable<Course[]> {
+    return this.httpClient
+      .put<Course>(`http://localhost:3000/courses/${courseId}`, payload).pipe(concatMap(() => this.getCourses$()));
   }
 }

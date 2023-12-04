@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CoursesComponent } from './modules/courses/courses.component';
 import { UsersComponent } from './modules/users/users.component';
 import { DashboardComponent } from './dashboard.component';
+import { adminGuard } from '../core/guards/admin.guard';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { DashboardComponent } from './dashboard.component';
         children: [
           {
             path: 'courses',
+            canActivate: [adminGuard],
             loadChildren: () =>
               import('./modules/courses/courses.module').then((arch) => arch.CoursesModule), 
           },
@@ -24,6 +26,7 @@ import { DashboardComponent } from './dashboard.component';
           },
           {
             path: 'employees',
+            canActivate: [adminGuard],
             loadChildren: () =>
               import('./modules/employees/employees.module').then((arch) => arch.EmployeesModule),
           },

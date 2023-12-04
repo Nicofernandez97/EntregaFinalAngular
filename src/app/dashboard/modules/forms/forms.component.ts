@@ -19,5 +19,9 @@ export class FormsComponent {
       userName:["",[Validators.required]],
       passcode:["",[Validators.required,]],
     }
-    )  }
+    ) 
+  
+  
+  
+  }
 }

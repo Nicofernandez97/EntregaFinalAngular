@@ -1,61 +1,32 @@
 import { Injectable } from '@angular/core';
 import { User } from './models';
-import { Observable, of } from 'rxjs';
+import { Observable, concatMap, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-
-
-  users: User[] = [
-    {
-      name:"jose",
-      lastName: "perez",
-      email: "joselu@hotmail.com",
-      grade: 7,
-    },
-    {
-      name:"martina",
-      lastName: "lopez",
-      email: "martu23@hotmail.com",
-      grade: 2,
-    },
-    {
-      name:"alvaro",
-      lastName: "fernandez",
-      email: "alvaro@gmail.com",
-      grade: 9,
-    },
-    {
-      name:"julian",
-      lastName: "diaz",
-      email: "elJulchu@hotmail.com",
-      grade: 3,
-    },
-    {
-      name:"damian",
-      lastName: "estrada",
-      email: "damidami@gmail.com",
-      grade: 8,
-    },
-  ]
+    
+ constructor(private httpClient: HttpClient){}
+ 
   
   getUsers$(): Observable<User[]> {
-    return of (this.users)
+    return this.httpClient.get<User[]>("http://localhost:3000/users")
+   }
+
+   addUser$(payload: User): Observable<User[]>{
+     return this.httpClient.post<User>("http://localhost:3000/users", payload).pipe(concatMap(() => this.getUsers$()));
+   }
+
+   changeUser$(userId: number, payload: User): Observable<User[]> {
+    return this.httpClient
+      .put<User>(`http://localhost:3000/users/${userId}`, payload)
+      .pipe(concatMap(() => this.getUsers$()));
   }
-  addUser$(payload: User): Observable<User[]>{
-  this.users.push(payload)
-  return of([...this.users]) 
-  }
-  deleteUser$(userEmail: string): Observable<User[]>{
-  this.users= this.users.filter((user) => user.email !== userEmail)
-  return of (this.users)
-  }
-  findUserByEmail$(userEmail: string) : Observable< User | undefined> {
-  return of(this.users.find( (user) => user.email === userEmail))
-  }
-  changeUser$(userEmail: string, payload: User): Observable<User[]>{
-  return of (this.users.map( (user) => user.email === userEmail ? { ...user, ...payload} : user)) 
+
+   deleteUser(id: number): Observable<User[]> {
+    return this.httpClient.delete<Object>(`http://localhost:3000/users/${id}`).pipe(concatMap(() => this.getUsers$())
+      );
   }
 }
 

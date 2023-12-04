@@ -1,14 +1,123 @@
 {
-    "users": [
-        {
-            "name": "Nicolas",
-            "lastName": "Fernandez",
-            "email": "nicoemail@hotmail.com",
-            "password": "1234",
-            "token": "token1",
-            "id": 1
-        }
-    ],
-    "courses": [],
-    "employees": []
+  "users": [
+    {
+      "name": "Nicolas",
+      "lastName": "Fernandez (Admin)",
+      "password": 1234,
+      "email": "nicoadmin@hotmail.com",
+      "grade": 0,
+      "role": "admin",
+      "id": 1
+    },
+    {
+      "name": "Nicolas",
+      "lastName": "Fernandez (Estudiante)",
+      "password": 1234,
+      "email": "nicoestudiante@hotmail.com",
+      "grade": 3,
+      "role": "estudiante",
+      "id": 2
+    },
+    {
+      "name": "Eduardo",
+      "lastName": "Casares",
+      "password": 1234,
+      "email": "eduCasares@gmail.com",
+      "grade": 6,
+      "role": "estudiante",
+      "id": 3
+    },
+    {
+      "name": "Claudio",
+      "lastName": "Carteri",
+      "password": 1234,
+      "email": "clau@hotmail.com",
+      "grade": 6,
+      "role": "estudiante",
+      "id": 4
+    },
+    {
+      "name": "Nicolas",
+      "lastName": "Fernandez (Profesor)",
+      "password": 1234,
+      "email": "nicoprofe@hotmail.com",
+      "grade": 0,
+      "role": "profesor",
+      "id": 5
+    },
+    {
+      "name": "Jose",
+      "lastName": "Perez",
+      "email": "Jose92@hotmail.com",
+      "grade": 6,
+      "role": "estudiante",
+      "password": "joseEstudiante",
+      "id": 6
+    }
+  ],
+  "courses": [
+    {
+      "name": "Instalador Electricista",
+      "startDate": "2023-12-23T03:00:00.000Z",
+      "endDate": "2024-04-12T03:00:00.000Z",
+      "id": 1
+    },
+    {
+      "name": "Albañilería",
+      "startDate": "2024-01-13T03:00:00.000Z",
+      "endDate": "2024-06-20T03:00:00.000Z",
+      "id": 2
+    },
+    {
+      "name": "Manipulación De Alimentos",
+      "startDate": "2024-12-27T03:00:00.000Z",
+      "endDate": "2025-03-26T03:00:00.000Z",
+      "id": 3
+    },
+    {
+      "name": "Plomería",
+      "startDate": "2023-12-29T03:00:00.000Z",
+      "endDate": "2024-10-21T03:00:00.000Z",
+      "id": 4
+    },
+    {
+      "name": "Formulas De Excel",
+      "startDate": "2023-12-21T03:00:00.000Z",
+      "endDate": "2024-02-13T03:00:00.000Z",
+      "id": 5
+    },
+    {
+      "name": "EcoTurismo",
+      "startDate": "2024-01-02T03:00:00.000Z",
+      "endDate": "2024-02-15T03:00:00.000Z",
+      "id": 6
+    }
+  ],
+  "inscripciones": [
+    {
+      "id": 1,
+      "userId": 3,
+      "courseId": 3
+    },
+    {
+      "courseId": 1,
+      "userId": 4,
+      "id": 3
+    },
+    {
+      "courseId": 4,
+      "userId": 3,
+      "id": 4
+    },
+    {
+      "courseId": 5,
+      "userId": 2,
+      "id": 5
+    },
+    {
+      "courseId": 6,
+      "userId": 4,
+      "id": 6
+    }
+  ]
 }

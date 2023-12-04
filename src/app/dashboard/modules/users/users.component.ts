@@ -3,7 +3,9 @@ import { MatDialog} from '@angular/material/dialog'
 import { UserDialogComponent } from './dialogcomponents/user-dialog/user-dialog.component';
 import { User } from './models';
 import { UsersService } from './users.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { selectAuthUser } from 'src/app/store/auth/auth.selectors';
+import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -13,44 +15,47 @@ export class UsersComponent {
   userName=""
 
   users$: Observable<User[]>
-
+  userPermits$: Observable<"admin"|"estudiante"|"profesor"| undefined>
   constructor(
     private usersService: UsersService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private store: Store
   ){
     this.users$ = this.usersService.getUsers$()
+    this.userPermits$ = this.store.select(selectAuthUser).pipe(map((user) => user?.role))
   }
   openDialog(): void {
     this.matDialog.open(UserDialogComponent).afterClosed().subscribe({ 
       next: (notCancelled) => {
         if(notCancelled){
-         this.users$ = this.usersService.addUser$({
-            name: notCancelled.name,
-            lastName: notCancelled.lastName,
-            email: notCancelled.email,
-            grade: notCancelled.grade
-          })
+          this.usersService.addUser$(notCancelled).subscribe({
+          next: () => {
+            this.users$ = this.usersService.getUsers$()
+          }
+         })
         }
       }
     })
   }
   
-  
-  onDeleteUser(userEmail: string):void {
-   this.users$ = this.usersService.deleteUser$(userEmail)
+
+  onChangeUser(user: User): void {
+    this.matDialog
+      .open(UserDialogComponent, {
+        data: user,
+      })
+      .afterClosed()
+      .subscribe({
+        next: (formCompleted) => {
+          if (!!formCompleted) {
+            this.users$ = this.usersService.changeUser$(user.id, formCompleted);
+          }
+        },
+      });
   }
 
-
-
-  onChangeUser(userEmail: string):void {
-    this.matDialog.open(UserDialogComponent,{
-      data:userEmail,
-    }).afterClosed().subscribe({
-      next: (formValue) => {
-        if(formValue !== undefined){
-          this.users$ = this.usersService.changeUser$(userEmail, formValue)
-        }
-      }
-    })
+  onDeleteUser(userId: number): void {
+      this.users$ = this.usersService.deleteUser(userId);
   }
 }
+

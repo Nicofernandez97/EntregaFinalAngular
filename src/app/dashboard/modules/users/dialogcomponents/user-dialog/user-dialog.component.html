@@ -1,4 +1,4 @@
-<h1 mat-dialog-title> Usuarios </h1>
+<h1 mat-dialog-title> Integrantes </h1>
 <div mat-dialog-content>
     <form [formGroup]="userForm">
         <div class="row">
@@ -7,7 +7,7 @@
                     <mat-label>Ingrese el nombre</mat-label>
                     <input formControlName="name" matInput>
                     <mat-hint>
-                        Ingresar el nombre del alumno,que tenga como minimo 3 letras.
+                        Ingresar el nombre del integrante,que tenga como minimo 3 letras.
                     </mat-hint>
                 </mat-form-field>
             </div>
@@ -16,7 +16,7 @@
                     <mat-label>Ingrese el apellido</mat-label>
                     <input formControlName="lastName" matInput>
                     <mat-hint>
-                        Ingresar el apellido del alumno.
+                        Ingresar el apellido del integrante.
                     </mat-hint>
                 </mat-form-field>
             </div>
@@ -25,16 +25,35 @@
                     <mat-label>Ingrese el Email</mat-label>
                     <input formControlName="email" matInput>
                     <mat-hint>
-                        Ingresar el email del alumno. Este debe incluír un @.
+                        Ingresar el email del integrante. Este debe incluír un @.
                     </mat-hint>
                 </mat-form-field>
             </div>
             <div class="col-6">
                 <mat-form-field style="width: 100%;">
-                    <mat-label class="w-100">Ingrese la nota del 1er Parcial</mat-label>
+                    <mat-label class="w-100">Ingrese la nota del 1er examen</mat-label>
                     <input type="number" formControlName="grade" matInput>
                     <mat-hint>
-                        Ingresar la nota del primer parcial del alumno. Esta debe ser un numero.
+                        Ingresar la nota del primer examen. Esta debe ser un numero o 0 si es un rol administrativo.
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="col-6 w-100">
+                <mat-form-field class="w-100">
+                    <mat-label class="w-100">Permiso a otorgar</mat-label>
+                    <mat-select formControlName="role" class="w-100">
+                        <mat-option *ngFor="let permit of userPermits" [value]="permit.value">
+                            {{permit.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field style="width: 100%;">
+                    <mat-label class="w-100">Ingrese la contraseña</mat-label>
+                    <input formControlName="password" matInput>
+                    <mat-hint>
+                        Ingresar la nota del primer examen. Esta debe ser un numero o 0 si es un rol administrativo.
                     </mat-hint>
                 </mat-form-field>
             </div>
